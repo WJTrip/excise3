@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <link href="css/login.css" rel="stylesheet" />
+    <script src="js/login.js"></script>
+    <script type="text/javascript">
+        function check() {
+            let userName=document.getElementById("userName").value;
+            let passWord=document.getElementById("passWord").value;
+            let userCode=document.getElementById("userCode").value;
+            if(userName===""){
+                alert("用户名不能为空！");
+            }
+            if (passWord === "") {
+                alert("密码不能为空！");
+            }
+            if (userCode === "") {
+                alert("验证码不能为空！");
+            }
+        }
+    </script>
+
+</head>
+<body>
+<div id="loginForm" >
+    <form action="http://localhost:8080/ajaxLoginCheck" method="post" name="form">
+        <p><label for="userName"></label><input type="text" id="userName" name="userName" placeholder="用户名" onblur="check()" /></p>
+        <p><label for="passWord"></label><input type="password" id="passWord" name="passWord" placeholder="密码" /></p>
+        <p>
+            <img src="/CreateVerifyImageController" title="看不清,换一个" alt="图片加载错误" id="VCode" onclick="changeCode()" >
+            <label for="userCode"></label><input type="text" name="userCode" id="userCode" placeholder="验证码" />
+        </p>
+        <div style="text-align: center"> <label for="checkbox">
+            <input id="checkbox" type="checkbox" value="true" name="checkbox"/>
+            <span >一周内免登录</span>
+        </label></div>
+        <p>
+            <input type="button" value="登录" id="btLogin" onclick="ajaxCheckLogin()"/>
+        </p>
+
+    </form>
+</div>
+</body>
+</html>
